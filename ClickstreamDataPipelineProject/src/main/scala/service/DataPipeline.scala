@@ -1,7 +1,7 @@
 package service
 
 import com.typesafe.config.ConfigFactory
-import org.apache.spark.sql._
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object DataPipeline {
   def dataPipeline():(DataFrame,DataFrame)= {
