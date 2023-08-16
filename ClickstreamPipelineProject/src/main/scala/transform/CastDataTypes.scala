@@ -2,16 +2,14 @@ package transform
 
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
+import service.FileReader
 
 object CastDataTypes {
-  def main(args: Array[String]) {
-    val spark = SparkSession.builder.master("local[*]").appName("CastDataTypes").getOrCreate()
-    //    val ssc = new StreamingContext(spark.sparkContext, Seconds(10))
-    val sc = spark.sparkContext
-    sc.setLogLevel("ERROR")
-    import spark.implicits._
-    import spark.sql
-
-    spark.stop()
+  def castDataTypes():(DataFrame,DataFrame)={
+    val (df1,df2)=FileReader.readDataFrame()
+    val df1cast = df1.withColumn("event_timestamp",
+      to_timestamp(col("event_timestamp"), "MM/dd/yyyy HH:mm"))
+    val df2cast: DataFrame = df2.withColumn("item_price", col("item_price").cast("Double"))
+    (df1cast,df2cast)
   }
 }

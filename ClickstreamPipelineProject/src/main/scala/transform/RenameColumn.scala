@@ -4,14 +4,15 @@ import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 
 object RenameColumn {
-  def main(args: Array[String]) {
-    val spark = SparkSession.builder.master("local[*]").appName("RenameColumn").getOrCreate()
-    //    val ssc = new StreamingContext(spark.sparkContext, Seconds(10))
-    val sc = spark.sparkContext
-    sc.setLogLevel("ERROR")
-    import spark.implicits._
-    import spark.sql
-
-    spark.stop()
+  def renameColumn():(DataFrame,DataFrame)={
+    val (df1cast,df2cast)=CastDataTypes.castDataTypes()
+  val df1rename: DataFrame = df1cast.withColumnRenamed("id", "Entity_id")
+    .withColumnRenamed("device_type", "device_type_t")
+    .withColumnRenamed("session_id", "visitor_session_c")
+    .withColumnRenamed("redirection_source", "redirection_source_t") //.printSchema()
+  val df2rename: DataFrame = df2cast.withColumnRenamed("item_price", "item_unit_price_a")
+    .withColumnRenamed("product_type", "product_type_c")
+    .withColumnRenamed("department_name", "department_n")
+    (df1rename,df2rename)
   }
 }

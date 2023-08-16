@@ -1,5 +1,7 @@
+import service.DataPipeline
+
 object ClickstreamPipeLine {
   def main(args: Array[String]): Unit = {
-    println("Hello world!")
+    DataPipeline.dataPipeline()
   }
 }
