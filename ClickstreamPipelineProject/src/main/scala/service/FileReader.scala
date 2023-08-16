@@ -1,17 +1,33 @@
 package service
 
+import com.typesafe.config.ConfigFactory
+import org.apache.spark.SparkConf
 import org.apache.spark.sql._
+import utils.sparksession
 import org.apache.spark.sql.functions._
 
 object FileReader {
-  def main(args: Array[String]) {
-    val spark = SparkSession.builder.master("local[*]").appName("FileReader").getOrCreate()
-    //    val ssc = new StreamingContext(spark.sparkContext, Seconds(10))
-    val sc = spark.sparkContext
-    sc.setLogLevel("ERROR")
-    import spark.implicits._
-    import spark.sql
 
-    spark.stop()
+  //to read application config file
+  def readConfig(): SparkConf = {
+    val config = ConfigFactory.load("application.conf")
+    val sparkAppName = config.getString("spark.appName")
+    val sparkMaster = config.getString("spark.master")
+    new SparkConf().setAppName(sparkAppName).setMaster(sparkMaster)
+  }
+
+  //to read the input csv file
+  def readDataFrame(): (DataFrame,DataFrame)= {
+    //spark.read.option("header", "true").option("inferSchema", "true").csv(inputPath)
+    val spark=sparksession.sparkSession()
+    // Read clickstream data from input paths
+    val inputPath1 = ConfigFactory.load("application.conf").getString("input.path1")
+    val inputPath2 = ConfigFactory.load("application.conf").getString("input.path2")
+
+
+    // Read both CSV files into a DataFrame
+    val df1 = spark.read.option("header", "true").option("inferSchema", "true").csv(inputPath1)
+    val df2 = spark.read.option("header", "true").option("inferSchema", "true").csv(inputPath2)
+    (df1,df2)
   }
 }

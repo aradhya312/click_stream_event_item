@@ -1,17 +1,26 @@
 package service
 
+import com.typesafe.config.ConfigFactory
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
+import transform.ConvertToLowercase
 
 object FileWriter {
-  def main(args: Array[String]) {
-    val spark = SparkSession.builder.master("local[*]").appName("FileWriter").getOrCreate()
-    //    val ssc = new StreamingContext(spark.sparkContext, Seconds(10))
-    val sc = spark.sparkContext
-    sc.setLogLevel("ERROR")
-    import spark.implicits._
-    import spark.sql
+  def fileWriter(): Unit = {
+    val (df1lowercase,df2lowercase)=ConvertToLowercase.convertToLowercase()
+    // Join both the dataframes
+    df1lowercase.printSchema()
+    df2lowercase.printSchema()
+    val finalDF: DataFrame = df1lowercase.join(df2lowercase, Seq("item_id"))
 
-    spark.stop()
+    // Show the final DataFrame
+    finalDF.show()
+
+    // Write processed data to output path
+    val outputPath = ConfigFactory.load("application.conf").getString("output.path")
+
+    // Write the final dataframe to a csv file
+    finalDF.repartition(1).write.option("header", "true").csv(outputPath)
+
   }
 }

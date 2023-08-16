@@ -1,17 +1,14 @@
 package transform
 
+//import dataevents.data_cleaning.removeDuplicates
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 
 object RemoveDuplicates {
-  def main(args: Array[String]) {
-    val spark = SparkSession.builder.master("local[*]").appName("RemoveDuplicates").getOrCreate()
-    //    val ssc = new StreamingContext(spark.sparkContext, Seconds(10))
-    val sc = spark.sparkContext
-    sc.setLogLevel("ERROR")
-    import spark.implicits._
-    import spark.sql
-
-    spark.stop()
+  def removeDuplicates():(DataFrame,DataFrame)={
+    val (df1notnull,df2notnull)=NullCheck.nullCheck()
+    val df1Duplicates = df1notnull.dropDuplicates("Entity_id")
+    val df2Duplicates = df2notnull.dropDuplicates("item_id")
+    (df1Duplicates,df2Duplicates)
   }
 }
