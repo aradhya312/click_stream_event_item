@@ -1,8 +1,6 @@
 package database
 
 import org.apache.spark.sql._
-import org.apache.spark.sql.functions._
-import service.FileReader
 
 object DatabaseWrite {
   //val joinedDF=FileReader.readJoinedDataSet()
