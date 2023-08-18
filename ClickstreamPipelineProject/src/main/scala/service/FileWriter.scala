@@ -6,8 +6,8 @@ import org.apache.spark.sql.functions._
 import transform.ConvertToLowercase
 
 object FileWriter {
-  def fileWriter(): Unit = {
-    val (df1lowercase,df2lowercase)=ConvertToLowercase.convertToLowercase()
+  def fileWriter(): DataFrame = {
+    val (df1lowercase, df2lowercase) = ConvertToLowercase.convertToLowercase()
     // Join both the dataframes
     df1lowercase.printSchema()
     df2lowercase.printSchema()
@@ -21,6 +21,6 @@ object FileWriter {
 
     // Write the final dataframe to a csv file
     finalDF.repartition(1).write.option("header", "true").csv(outputPath)
-
+    finalDF
   }
 }
