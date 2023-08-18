@@ -3,7 +3,6 @@ package database
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 import service.FileReader
-import DatabaseConnection._
 
 object DatabaseWrite {
   //val joinedDF=FileReader.readJoinedDataSet()
@@ -18,4 +17,4 @@ object DatabaseWrite {
       .option("password", constant.jdbcPassword)
       .save()
   }
-  }
+}
