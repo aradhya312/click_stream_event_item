@@ -1,9 +1,0 @@
-[warn] scala-library-2.11.12-sources.jar no longer exists at C:\Users\Hp\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.11.12\scala-library-2.11.12-sources.jar
-[debug] not up to date. inChanged = false, force = false
-<<<<<<< HEAD
-[debug] Updating ProjectRef(uri("file:/C:/Users/Siddhi/Desktop/TargetProject/ClickstreamPipelineProject/"), "root")...
-[debug] Done updating ProjectRef(uri("file:/C:/Users/Siddhi/Desktop/TargetProject/ClickstreamPipelineProject/"), "root")
-=======
-[debug] Updating ProjectRef(uri("file:/C:/ClickstreamPipelineProject/"), "root")...
-[debug] Done updating ProjectRef(uri("file:/C:/ClickstreamPipelineProject/"), "root")
->>>>>>> origin/feat_ayushi

@@ -1,8 +1,0 @@
-[debug] not up to date. inChanged = true, force = false
-<<<<<<< HEAD
-[debug] Updating ProjectRef(uri("file:/C:/Users/Siddhi/Desktop/TargetProject/ClickstreamPipelineProject/project/"), "clickstreampipelineproject-build")...
-[debug] Done updating ProjectRef(uri("file:/C:/Users/Siddhi/Desktop/TargetProject/ClickstreamPipelineProject/project/"), "clickstreampipelineproject-build")
-=======
-[debug] Updating ProjectRef(uri("file:/C:/ClickstreamPipelineProject/project/"), "clickstreampipelineproject-build")...
-[debug] Done updating ProjectRef(uri("file:/C:/ClickstreamPipelineProject/project/"), "clickstreampipelineproject-build")
->>>>>>> origin/feat_ayushi
