@@ -1,1 +1,0 @@
-# click_stream_event_item
