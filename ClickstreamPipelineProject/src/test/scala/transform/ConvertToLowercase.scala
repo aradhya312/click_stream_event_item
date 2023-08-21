@@ -1,5 +1,0 @@
-package transform
-
-class ConvertToLowercase {
-
-}

@@ -8,9 +8,16 @@ import transform.ConvertToLowercase
 object DataPipeline {
   def dataPipeline():Unit={
 
+<<<<<<< HEAD
   //FileWriter.fileWriter()
 
     val joinedDF = FileWriter.fileWriter()
     DatabaseWrite.writeToMySQL(joinedDF, "cdp")
+=======
+  FileWriter.fileWriter()
+
+//    val joinedDF = FileWriter.fileWriter()
+//    DatabaseWrite.writeToMySQL(joinedDF, "cdp")
+>>>>>>> origin/feat_ayushi
   }
 }

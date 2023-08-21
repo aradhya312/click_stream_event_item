@@ -1,6 +1,12 @@
 package database
 
 import org.apache.spark.sql._
+<<<<<<< HEAD
+=======
+import org.apache.spark.sql.functions._
+import service.FileReader
+import DatabaseConnection._
+>>>>>>> origin/feat_ayushi
 
 object DatabaseWrite {
   //val joinedDF=FileReader.readJoinedDataSet()
@@ -15,4 +21,8 @@ object DatabaseWrite {
       .option("password", constant.jdbcPassword)
       .save()
   }
+<<<<<<< HEAD
 }
+=======
+  }
+>>>>>>> origin/feat_ayushi
