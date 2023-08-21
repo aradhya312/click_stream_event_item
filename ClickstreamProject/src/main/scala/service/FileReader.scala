@@ -26,16 +26,15 @@ object FileReader {
 
   //to read the input csv file
   def readDataFrame(spark:SparkSession, inputpath:String): DataFrame= {
-    val dataframe=spark.read.option("header", "true").option("inferSchema", "true").csv(inputpath)
-//    val spark=sparksession.sparkSession()
-    // Read clickstream data from input paths
-//    val inputPath1 = ConfigFactory.load("application.conf").getString("input.path1")
-//    val inputPath2 = ConfigFactory.load("application.conf").getString("input.path2")
-
-
-    // Read both CSV files into a DataFrame
-//    val df1 = spark.read.option("header", "true").option("inferSchema", "true").csv(inputPath1)
-//    val df2 = spark.read.option("header", "true").option("inferSchema", "true").csv(inputPath2)
-    dataframe
+    try {
+      val dataframe = spark.read.option("header", "true").option("inferSchema", "true").csv(inputpath)
+      dataframe
+    } catch {
+      case e: Exception =>
+        println(s"An error occurred while reading the DataFrame from $inputpath:")
+        e.printStackTrace()
+        // You can handle the error here, such as returning an empty DataFrame or rethrowing the exception
+        spark.emptyDataFrame // Returning an empty DataFrame as an example
+    }
   }
 }

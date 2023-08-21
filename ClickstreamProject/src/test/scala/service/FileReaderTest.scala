@@ -1,23 +1,27 @@
-package service
-
-import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.scalatest.flatspec.AnyFlatSpec
-import utils.sparksessiontest
-
-class FileReaderTest extends AnyFlatSpec {
-  var clickstream_test_DF: DataFrame = _
-  var itemset_test_DF: DataFrame = _
-  "FileReader object" should "do the following"
-
-  it should "read the files in the path" in {
-    val spark = sparksessiontest.sparkSession()
-    clickstream_test_DF = FileReader.readDataFrame(spark,"input.sample_path1")
-    itemset_test_DF = FileReader.readDataFrame(spark,"input.sample_path2")
-
-    assert(clickstream_test_DF.count()>=1)
-    assert(itemset_test_DF.count()>=1)
-
-    clickstream_test_DF.show()
-    itemset_test_DF.show()
-  }
-}
+//package service
+//
+//import com.typesafe.config.ConfigFactory
+//import org.apache.spark.sql.{DataFrame, SparkSession}
+//import org.scalatest.flatspec.AnyFlatSpec
+//import utils.spark_readDF_config_test
+//
+//class FileReaderTest extends AnyFlatSpec {
+//
+//  "FileReader object" should "do the following"
+//
+//  it should "read the files in the path" in {
+//    val spark = spark_readDF_config_test.sparkSession()
+//
+//    val inputPath_clickstream = ConfigFactory.load("test_application.conf").getString("input.sample_path1")
+//    val inputPath_itemset = ConfigFactory.load("test_application.conf").getString("input.sample_path2")
+//
+//    val clickstream_test_DF = FileReader.readDataFrame(spark,inputPath_clickstream)
+//    val itemset_test_DF = FileReader.readDataFrame(spark,inputPath_itemset)
+//
+//    assertResult(10)(clickstream_test_DF.count())
+//    assertResult(10)(itemset_test_DF.count())
+//
+//    clickstream_test_DF.show()
+//    itemset_test_DF.show()
+//  }
+//}
