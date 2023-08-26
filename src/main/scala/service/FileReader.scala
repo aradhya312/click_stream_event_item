@@ -8,14 +8,6 @@ import org.apache.spark.sql.functions._
 
 object FileReader {
 
-  //Method to convert the output file to DF
-//  def readJoinedDataSet():DataFrame= {
-//    val spark = sparksession.sparkSession()
-//    val OutPutPath = ConfigFactory.load("application.conf").getString("output.path")
-//    val JoinedDF = spark.read.option("header", "true").option("inferSchema", "true").csv(OutPutPath)
-//    JoinedDF
-//  }
-
   //to read application config file
   def readConfig(): SparkConf = {
     val config = ConfigFactory.load("application.conf")

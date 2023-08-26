@@ -27,7 +27,7 @@ object DataPipeline {
     val (df1rename,df2rename)=RenameColumn.renameColumn(df1lowercase,df2lowercase)
 
     val joinedDF = FileWriter.fileWriter(df1rename,df2rename,outputPath)
-   //DatabaseWrite.writeToMySQL(joinedDF, "cdp")
+   DatabaseWrite.writeToMySQL(joinedDF, "cdp")
    // joinedDF.show()
   }
 }
