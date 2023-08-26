@@ -2,12 +2,15 @@ package service
 
 import com.typesafe.config.ConfigFactory
 import database.DatabaseWrite
+import database.DatabaseWrite.getClass
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
+import org.slf4j.LoggerFactory
 import transform.{CastDataTypes, ConvertToLowercase, NullCheck, RemoveDuplicates, RenameColumn}
 import utils.sparksession
 
 object DataPipeline {
+  val logger = LoggerFactory.getLogger(getClass.getName)
   def dataPipeline():Unit={
     val spark=sparksession.sparkSession()
 

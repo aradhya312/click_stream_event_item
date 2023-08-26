@@ -23,8 +23,7 @@ object FileReader {
       dataframe
     } catch {
       case e: Exception =>
-        println(s"An error occurred while reading the DataFrame from $inputpath:")
-        e.printStackTrace()
+        DataPipeline.logger.error("An error occured during reading the Dataframe",e)
         // You can handle the error here, such as returning an empty DataFrame or rethrowing the exception
         spark.emptyDataFrame // Returning an empty DataFrame as an example
     }
